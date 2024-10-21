@@ -73,4 +73,52 @@
         View blog
     </h2><br>
     </div>
+    <?php 
+    echo "<pre>";
+    print_r($blog);
+    echo "</pre>";
+    ?>
+    <?php 
+    if($blog){
+      ?>
+      <table border="1" style="width: 100%; text-align: left;">
+      <thead>
+          <tr>
+              <th style="width: 10%;">Sr no</th>
+              <th style="width: 20%;">Title</th>
+              <th style="width: 35%;">Description</th>
+              <th style="width: 15%;">Image</th>
+              <th style="width: 10%;">Edit</th>
+              <th style="width: 10%;">Delete</th>
+          </tr>
+      </thead>
+      <tbody>
+      <?php
+          // Example of how to loop through the blog data and display it in a table
+          // Replace the loop with your actual blog data fetching and displaying code
+          // For example:
+      for ($i = 0; $i < count($blog); $i++) {
+        ?>
+        <tr>
+        <td><?= $blog[$i]['blogid'] ?></td>
+        <td><?= $blog[$i]['blog_title'] ?></td>
+        <td><?= $blog[$i]['blog_desc'] ?></td>
+        <td><img src="<?= base_url().$blog[$i]['blog_img']?>" width="100" height="100"></td>
+        <td><a class="btn btn-info" href="<?= base_url().'admin/blog/edit_blog/1'?>">Edit</a></td>
+        <td><a class="btn btn-danger" href="<?= base_url().'admin/blog/delete_blog/1'?>">Delete</a></td>
+        </tr>
+  
+        <?php  
+        }
+        ?>
+        
+      </tbody>
+  </table>
+  <?php  }
+    else{
+      echo "No records found";
+    }
+    ?>
+ 
+
     </main>

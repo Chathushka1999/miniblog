@@ -20,14 +20,20 @@ class Blog extends CI_Controller {
 	 */
 	public function index()
 	{
- 
-		$this->load->view('adminPanel/viewBlog');
+        $query = $this->db->query("SELECT * FROM `articles` ORDER BY `blogid` ASC" );
+        $data['blog'] = $query->result_array();
+		$this->load->view('adminPanel/viewBlog', $data);
 	}
 
 	public function add_blog(){
         $this->load->view('adminPanel/addBlog');
 
     }
+
+    function edit_blog($blog_id){}
+
+    function delete_blog($blog_id){}
+
     public function addblog_post(){
         print_r($_POST);
         $config['upload_path']          = './application/assets/uploads/';
