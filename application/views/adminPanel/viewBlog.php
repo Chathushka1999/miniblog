@@ -103,7 +103,7 @@
         <td><?= $blog[$i]['blogid'] ?></td>
         <td><?= $blog[$i]['blog_title'] ?></td>
         <td><?= $blog[$i]['blog_desc'] ?></td>
-        <td><img src="<?= base_url().$blog[$i]['blog_img']?>" width="100" height="100"></td>
+        <td><img src="<?=base_url().$blog[$i]['blog_img']?>" width="100" height="100"></td> 
         <td><a class="btn btn-info" href="<?= base_url().'admin/blog/edit_blog/1'?>">Edit</a></td>
         <td><a class="btn btn-danger" href="<?= base_url().'admin/blog/delete_blog/1'?>">Delete</a></td>
         </tr>

@@ -30,13 +30,16 @@ class Blog extends CI_Controller {
 
     }
 
-    function edit_blog($blog_id){}
+    function edit_blog($blog_id){
+        $this->load->view('adminPanel/editBlog');
+
+    }
 
     function delete_blog($blog_id){}
 
     public function addblog_post(){
         print_r($_POST);
-        $config['upload_path']          = './application/assets/uploads/';
+        $config['upload_path']          = './assets/uploads/';
         $config['allowed_types']        = 'gif|jpg|png|jpeg';
         // $config['max_size']             = 100;
         // $config['max_width']            = 1024;
@@ -60,7 +63,7 @@ class Blog extends CI_Controller {
                 // echo "</pre>";
                 $post_title = $_POST['title'];
                 $post_desc = $_POST['desc'];
-                $imgurl = '/application/assets/uploads/'.$data['upload_data']['file_name'];
+                $imgurl = '/assets/uploads/'.$data['upload_data']['file_name'];
                 $query = $this->db->query("INSERT INTO `articles`(`blog_title`, `blog_desc`, `blog_img`) VALUES ( '$post_title','$post_desc','$imgurl')");
                 if($query){
                     $this->session->set_flashdata('inserted', 'yes');
@@ -75,5 +78,9 @@ class Blog extends CI_Controller {
                 
                 //$this->load->view('upload_success', $data);
         }
+    }
+
+    function editblog_post(){
+
     }
 }
