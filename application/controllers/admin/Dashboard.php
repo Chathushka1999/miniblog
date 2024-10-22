@@ -20,14 +20,7 @@ class Dashboard extends CI_Controller {
 	 */
 	public function index()
 	{
-        if (!$this->session->userdata('user_id')) {
-            // If no user is logged in, redirect to the login page
-            redirect('admin/Login');
-        }
-		else{
-			$this->load->view('adminPanel/dashboard');
 
-		}
 
  
 	}
