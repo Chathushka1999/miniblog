@@ -121,10 +121,10 @@
     ?>
     </main>
     
-    <!-- <script type="text/javascript">
+    <script type="text/javascript">
       $(".delete").click(function(){
         alert("are you sure");
       });
     </script>
-   -->
+  
 

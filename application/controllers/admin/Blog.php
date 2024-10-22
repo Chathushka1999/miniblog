@@ -38,7 +38,10 @@ class Blog extends CI_Controller {
 
     }
 
-    function delete_blog($blogid){}
+    function delete_blog($blogid){
+        $this->db->query("DELETE FROM `articles` WHERE `blogid` = $blogid");
+        redirect('admin/blog');
+    }
 
     public function addblog_post(){
         print_r($_POST);
