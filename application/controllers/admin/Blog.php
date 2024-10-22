@@ -30,12 +30,15 @@ class Blog extends CI_Controller {
 
     }
 
-    function edit_blog($blog_id){
-        $this->load->view('adminPanel/editBlog');
+    function edit_blog($blogid){
+        
+        $query = $this->db->query("SELECT * FROM `articles` WHERE `blogid` = $blogid");
+        $data['blog'] = $query->result_array();
+        $this->load->view('adminPanel/editBlog', $data);
 
     }
 
-    function delete_blog($blog_id){}
+    function delete_blog($blogid){}
 
     public function addblog_post(){
         print_r($_POST);
@@ -81,6 +84,56 @@ class Blog extends CI_Controller {
     }
 
     function editblog_post(){
+        echo "<pre>";
+        print_r($_FILES);    
+        echo "</pre>";
+        $post_title = $_POST['title'];
+        $post_desc = $_POST['desc'];
+        $blogid = $_POST['blogid'];
+        $updated_time = time();
+        if($_FILES['file']['name']){
+            $config['upload_path']          = './assets/uploads/';
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';
+            // $config['max_size']             = 100;
+            // $config['max_width']            = 1024;
+            // $config['max_height']           = 768;
+
+            $this->load->library('upload', $config);
+
+            if ( ! $this->upload->do_upload('file'))
+            {
+                    $error = array('error' => $this->upload->display_errors());
+                    print_r ($error);
+                    die("error");
+
+                    //$this->load->view('upload_form', $error);     //future improvement
+            }
+            else
+            {
+                    $data = array('upload_data' => $this->upload->data());     
+                    $imgurl = '/assets/uploads/'.$data['upload_data']['file_name'];          
+                    $query = $this->db->query("UPDATE `articles` SET  `blog_title`='$post_title',`blog_desc`='$post_desc',`blog_img`='$imgurl' ,`updated_on`= '$updated_time' WHERE `blogid`= '$blogid'");
+     
+                    
+            }
+        }
+        else{
+            $query = $this->db->query("UPDATE `articles` SET  `blog_title`='$post_title',`blog_desc`='$post_desc' ,`updated_on`= '$updated_time' WHERE `blogid`= '$blogid'");
+
+        }
+                if($query){
+                    $this->session->set_flashdata('inserted', 'yes');
+                    redirect('admin/blog');
+
+                }
+                else{
+                    $this->session->set_flashdata('inserted', 'no');
+                    redirect('admin/blog');
+
+                }
+                
+                //$this->load->view('upload_success', $data);
+        }
+
 
     }
-}

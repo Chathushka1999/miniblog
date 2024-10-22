@@ -73,7 +73,7 @@
         Add New Blog Post
     </h2><br>
     </div>
-    <form enctype= "multipart/form-data" action="<?= base_url().'admin/blog/addblog_post'?>" method="post">
+    <form enctype= "multipart/form-data" action="<?= base_url().'admin/blog/addblog_post'?>" method="post" style="width: 100%;">
         <div class="form_group">
             <!-- <label for="title">Title:</label> -->
             <input type="text" class="form_control" id="title" name="title" placeholder="Title" >

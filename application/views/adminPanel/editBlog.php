@@ -40,7 +40,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="#">
+              <a class="nav-link d-flex align-items-center gap-2" href="<?= base_url().'admin/blog'?> ">
                 <svg class="bi"><use xlink:href="#cart"/></svg>
                 View blog
               </a>
@@ -67,64 +67,50 @@
       </div>
     </div>
 
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h2>
-        View blog
+        Edit Blog Post
     </h2><br>
     </div>
     <?php 
     // echo "<pre>";
-    // print_r($blog);
+    // print_r($blog); 
     // echo "</pre>";
     ?>
-    <?php 
-    if($blog){
-      ?>
-      <table border="1" style="width: 100%; text-align: left;">
-      <thead>
-          <tr>
-              <th style="width: 10%;">Sr no</th>
-              <th style="width: 20%;">Title</th>
-              <th style="width: 35%;">Description</th>
-              <th style="width: 15%;">Image</th>
-              <th style="width: 10%;">Edit</th>
-              <th style="width: 10%;">Delete</th>
-          </tr>
-      </thead>
-      <tbody>
-      <?php
-          // Example of how to loop through the blog data and display it in a table
-          // Replace the loop with your actual blog data fetching and displaying code
-          // For example:
-      for ($i = 0; $i < count($blog); $i++) {
-        ?>
-        <tr>
-        <td><?= $blog[$i]['blogid'] ?></td>
-        <td><?= $blog[$i]['blog_title'] ?></td>
-        <td><?= $blog[$i]['blog_desc'] ?></td>
-        <td><img src="<?=base_url().$blog[$i]['blog_img']?>" width="100" height="100"></td> 
-        <td><a class="btn btn-info" href="<?= base_url().'admin/blog/edit_blog/'.$blog[$i]['blogid']?>">Edit</a></td>
-        <td><a class="btn btn-danger" href="<?= base_url().'admin/blog/delete_blog/'.$blog[$i]['blogid']?>">Delete</a></td>
-        </tr>
-  
-        <?php  
-        }
-        ?>
-        
-      </tbody>
-  </table>
-  <?php  }
-    else{
-      echo "No records found";
-    }
-    ?>
-    </main>
-    
-    <!-- <script type="text/javascript">
-      $(".delete").click(function(){
-        alert("are you sure");
-      });
-    </script>
-   -->
+    <form enctype= "multipart/form-data" action="<?= base_url().'admin/blog/editblog_post'?>" method="post" style="width: 100%;">
+        <input type="hidden"  name="blogid" id = "blogid" value = "<?= $blog[0]['blogid']?>">
+        <div class="form_group">
+            <!-- <label for="title">Title:</label> -->
+            <input type="text"  class="form_control" id="title" value="<?= $blog[0]['blog_title']?>" name="title" placeholder="Title" >
+        </div>
+        <div class="form_group">
+            <!-- <label for="title">Blog Desc:</label> -->
+            <textarea name="desc" class="form_control" id="desc"  placeholder="Blog Desc"><?= $blog[0]['blog_desc']?></textarea>
+        </div><br>
+        <div class="form_group">
+            <img src="<?= base_url().$blog[0]['blog_img'] ?>" width="100" ><br>
+            <label for="title">Image:</label>
+            <input type="file" class="form_control" id="file" name="file" placeholder="Image" >
+        </div><br>
+        <button type="submit" class="btn btn-primary">Edit Blog</button>
 
+    </form>
+</main>
+
+<script type="text/javascript">
+  <?php
+  if(isset($_SESSION)){
+    if($_SESSION['inserted'] == 'yes'){
+      echo 'alert("Blog updated successfully!")';
+    
+    }
+    else{
+      echo 'alert("Failed to edit the blog!")';
+      echo 'alert("'.$error.'")';
+    }
+  }
+
+   ?>
+
+</script>
