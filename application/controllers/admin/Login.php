@@ -24,7 +24,7 @@ class Login extends CI_Controller {
 	public function index()
 	{
         if(isset($_SESSION['user_id'])){
-            redirect('admin/Dashboard');
+            redirect('admin/blog');
             return;
         }
 
@@ -58,7 +58,7 @@ class Login extends CI_Controller {
                 // print_r($query->result_array());
                 // echo "</pre>";  
                 $this->session->set_userdata('user_id', $result[0]['user_id']);
-                redirect('admin/Dashboard');
+                redirect('admin/blog');
 
             }
             //if valid, redirect to dashboard

@@ -20,14 +20,28 @@ class Blog extends CI_Controller {
 	 */
 	public function index()
 	{
-        $query = $this->db->query("SELECT * FROM `articles` ORDER BY `blogid` ASC" );
-        $data['blog'] = $query->result_array();
-		$this->load->view('adminPanel/viewBlog', $data);
+        if (!$this->session->userdata('user_id')) {
+            // If no user is logged in, redirect to the login page
+            redirect('admin/Login');
+        }
+		else{
+            $query = $this->db->query("SELECT * FROM `articles` ORDER BY `blogid` ASC" );
+            $data['blog'] = $query->result_array();
+            $this->load->view('adminPanel/viewBlog', $data); 
+
+		}
+
 	}
 
 	public function add_blog(){
+        if (!$this->session->userdata('user_id')) {
+            // If no user is logged in, redirect to the login page
+            redirect('admin/Login');
+        }
+        else{
+    
         $this->load->view('adminPanel/addBlog');
-
+        }
     }
 
     function edit_blog($blogid){

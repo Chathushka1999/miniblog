@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" integrity="sha384-dpuaG1suU0eT09tx5plTaGMLBsfDLzUCCUXOY2j/LSvXYuG6Bqs43ALlhIqAJVRb" crossorigin="anonymous">
     <link rel = "stylesheet" type="text/css" href="https://getbootstrap.com/docs/5.3/examples/dashboard/dashboard.css">
 
-    <title>Dashboard</title>
+    <title>Blog</title>
 
 
 </head>
@@ -27,35 +27,36 @@
         </div>
         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
           <ul class="nav flex-column">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="<?= base_url().'admin/Dashboard'?>">
                 <svg class="bi"><use xlink:href="#house-fill"/></svg>
                 Dashboard
               </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="<?= base_url().'admin/blog/add_blog'?>">
-                <svg class="bi"><use xlink:href="#file-earmark"/></svg>
-                Add blog
-              </a>
-            </li>
+            </li> -->
+
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="#">
                 <svg class="bi"><use xlink:href="#cart"/></svg>
                 View blog
               </a>
-            </li>           
+            </li>   
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="<?= base_url().'admin/blog/add_blog'?>">
+                <svg class="bi"><use xlink:href="#file-earmark"/></svg>
+                Add blog
+              </a>
+            </li>        
           </ul>
 
           <hr class="my-3">
 
           <ul class="nav flex-column mb-auto">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="#">
                 <svg class="bi"><use xlink:href="#gear-wide-connected"/></svg>
                 Settings
               </a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="<?= base_url().'admin/login/logout'?>">
                 <svg class="bi"><use xlink:href="#door- closed"/></svg>
@@ -70,7 +71,7 @@
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h2>
-        View blog
+        Blog
     </h2><br>
     </div>
     <?php 
@@ -81,12 +82,12 @@
     <?php 
     if($blog){
       ?>
-      <table border="1" style="width: 100%; text-align: left;">
+      <table style="width: 100%; text-align: left;">
       <thead>
           <tr>
-              <th style="width: 10%;">Sr no</th>
+              <th style="width: 5%;">Sr no</th>
               <th style="width: 20%;">Title</th>
-              <th style="width: 35%;">Description</th>
+              <th style="width: 40%;">Description</th>
               <th style="width: 15%;">Image</th>
               <th style="width: 10%;">Edit</th>
               <th style="width: 10%;">Delete</th>
