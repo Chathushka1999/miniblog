@@ -91,7 +91,7 @@
                 <p class="card-text"><?= substr($blog[$i]['blog_desc'], 0, 100) ?>...</p>
             </div>
             <div class="card-footer">
-                <a href="<?= base_url() . 'admin/blog/view_blog/' . $blog[$i]['blogid'] ?>" class="btn btn-info">Read More</a>
+                <a href="<?= base_url() . 'Home/blog_details/' . $blog[$i]['blogid'] ?>" class="btn btn-info">Read More</a>
             </div>
         </div>
         <?php

@@ -25,8 +25,14 @@ class Home extends CI_Controller {
 		$this->load->view('blog_list_page', $data);
 	}
 
-    function blog_details(){
-        $this->load->view('blog_details_page');
+    function blog_details($blogid){
+        // $query = $this->db->query("SELECT * FROM `articles` ORDER BY `blogid` ASC" );
+        // $data['blog'] = $query->result_array();
+        // $this->load->view('blog_details_page', $data);
+
+        $query = $this->db->query("SELECT * FROM `articles` WHERE `blogid` = $blogid");
+        $data['blog'] = $query->result_array();
+        $this->load->view('blog_details_page', $data);
 
     }
 }
